@@ -1,9 +1,6 @@
 from Bio import SeqIO  # biopython
 from Bio.SeqUtils import GC
 
-# Example dataset used is: Cypripedioideae, a subfamily of orchids
-# The code can be applied to other datasets
-
 
 # Produces general info about the sequence to terminal
 def output_sequence_info():
