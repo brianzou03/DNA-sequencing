@@ -2,20 +2,23 @@
 
 
 # Prerequisites
-
+Some files within the data dir are too large, and therefore must be downloaded directly
+GRCh38_latest_genomic.fna can be found under "Reference Genome Sequence" at NCBI, linked below
+https://www.ncbi.nlm.nih.gov/genome/guide/human/
 
 # Datasets used
+* GRCh38_latest_genomic.fna - Human Genome Sequence (check prerequisites)
+* GRCh38_latest_protein.faa - Human Protein Sequence
+* orchid.fasta - Cypripedioideae, a subfamily of orchids
 
-orchid.fasta - Cypripedioideae, a subfamily of orchids
 
-
-# DNA Bases
-* Adenine (A) pairs with Thymine (T)
-* Cytosine (C) pairs with Guanine (G)
+# DNA Bases + 1 letter code
+* Adenine (A) : pairs with Thymine (T)
+* Cytosine (C) : pairs with Guanine (G)
 * Guanine (G)
 * Thymine (T)
 
-# Protein amino acids
+# Protein amino acids + 3 letter code + 1 letter code
 
 * alanine - ala - (A)
 * arginine - arg - (R)
@@ -39,5 +42,16 @@ orchid.fasta - Cypripedioideae, a subfamily of orchids
 * valine - val - (V)
 
 
+# FASTA File Extensions 
+
+* fasta, fa	generic FASTA	Any generic fasta file. See below for other common FASTA file extensions
+* fna - FASTA nucleic acid	(Used generically to specify nucleic acids.)
+* ffn - FASTA nucleotide of gene regions (Contains coding regions for a genome.)
+* faa - FASTA amino acid (Contains amino acid sequences. A multiple protein fasta file can have the more specific extension mpfa.)
+* frn - FASTA non-coding RNA (Contains non-coding RNA regions for a genome, in DNA alphabet e.g. tRNA, rRNA)
+
 # Sources/Research
 
+### National Center for Biotechnology Information (NCBI)
+NCBI: https://www.ncbi.nlm.nih.gov/
+NCBI Human Genome Resources: https://www.ncbi.nlm.nih.gov/genome/guide/human/

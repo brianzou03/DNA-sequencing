@@ -5,7 +5,7 @@ from Bio.SeqUtils import GC
 # Produces general info about the sequence to terminal
 def output_sequence_info():
     row = 0
-    for sequence in SeqIO.parse('data/orchid.fasta', 'fasta'):
+    for sequence in SeqIO.parse('data/GRCh38_latest_protein.faa', 'fasta'):
         print('Sequence ID: ' + str(sequence.id))
         print('DNA Sequence: ' + str(sequence.seq))
         print('Guanine-Cytosine Content: ' + str(GC(sequence.seq)))
@@ -18,7 +18,7 @@ def output_sequence_info():
 # Displays complement and reverse complement of the sequence to terminal
 def dna_complement():
     row = 1
-    for sequence in SeqIO.parse('data/orchid.fasta', 'fasta'):
+    for sequence in SeqIO.parse('data/GRCh38_latest_genomic.fna', 'fasta'):
         print('Row ' + str(row))
         print('Original Sequence:  {} '.format(sequence.seq))
         print('Complement Sequence: {}: '.format(sequence.seq.complement()))
