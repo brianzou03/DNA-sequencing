@@ -3,8 +3,7 @@ from Bio.SeqUtils import GC
 import squiggle
 
 
-# TODO: Squiggle visualization:
-# Squiggle data/GRCh38_latest_protein.faa --method=gates
+# terminal: Squiggle data/GRCh38_latest_protein.faa --method=gates
 
 # Produces general info about the sequence to terminal
 def output_sequence_info():
@@ -30,5 +29,13 @@ def dna_complement():
         row += 1
 
 
-output_sequence_info()
-dna_complement()
+# Returning genomic sequence for use in sequencing.py
+def return_genomic_sequence():
+    for sequence in SeqIO.parse('../data/GRCh38_genomic_test.fna', 'fasta'):
+        return str(sequence.seq)
+
+
+# Note: these have to stay commented when running encoding files
+# output_sequence_info()
+# dna_complement()
+

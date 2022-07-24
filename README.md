@@ -1,5 +1,5 @@
 # DNA-sequencing
-
+(project synopsis here)
 
 ## Prerequisites
 Some files within the data dir are too large, and therefore must be downloaded directly
@@ -63,8 +63,34 @@ Test files are provided to demonstrate the functionality of the project
 * faa - FASTA amino acid (Contains amino acid sequences. A multiple protein fasta file can have the more specific extension mpfa.)
 * frn - FASTA non-coding RNA (Contains non-coding RNA regions for a genome, in DNA alphabet e.g. tRNA, rRNA)
 
+
+## DNA Encoding Approaches
+1. **Ordinal encoding DNA sequence data**
+We need to encode each nitrogen base as an ordinal value. 
+“ATGC” becomes [0.25, 0.5, 0.75, 1.0]. Ambiguous bases become 0.
+
+
+2. **One-hot encoding DNA Sequence**
+One-hot encoding is often used in deep learning methods and works with CNN. 
+“ATGC” becomes [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0]. 
+One-hot encoded vectors can be concatenated or transformed into matrices
+
+
+3. **k-mer counting (DNA sequences as a "language")**
+The problem with ordinal and one-hot is that the results are not uniform length, necessary for classification
+and regression. With k-mer counting we take a sequence and break it down into k-mer length "words". 
+We determine the length of the words - for example "words" of length 5 (hexamers), 
+“ATGCATGCA” becomes: 'ATGCA', 'TGCAT', ‘GCATG’, 'CATGC', 'ATGCA' . 
+This forms 5 hexamer words, with 5 (letters) ^ 5 (length) = 3125 potential words 
+
+
+## Machine Learning Model
+(ML Model here)
+
+
 ## Sources/Research
 
 ### National Center for Biotechnology Information (NCBI)
 NCBI: https://www.ncbi.nlm.nih.gov/
 NCBI Human Genome Resources: https://www.ncbi.nlm.nih.gov/genome/guide/human/
+
