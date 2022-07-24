@@ -3,7 +3,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 from helpers.encoding_helper import string_to_array
 from main import return_genomic_sequence
-from encoding.ordinal import label_encoder
+from encoders.ordinal import label_encoder
 
 
 def one_hot_encoder(seq_string):  # transforms ACTG to [0,0,0,1], [0,0,1,0], [0,1,0,0], or [1,0,0,0]

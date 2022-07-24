@@ -1,13 +1,7 @@
-import Bio
-import numpy as np
-import re
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.feature_extraction.text import CountVectorizer
-import pandas as pd
-import matplotlib.pyplot as plt
 from main import return_genomic_sequence
 
-from encoding import *
+from encoders import *
 
 
 def kmers_function(seq, size):
