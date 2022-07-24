@@ -11,6 +11,7 @@ https://www.ncbi.nlm.nih.gov/genome/guide/human/
 Test files are provided to demonstrate the functionality of the project
 
 
+
 ## Datasets used
 * GRCh38_latest_genomic.fna - Human Genome Sequence (check prerequisites)
 * GRCh38_genomic_test.fna - A subset (the initial sequence in GRCh38_latest_genomic.fna before artifacts)
@@ -94,3 +95,26 @@ This forms 5 hexamer words, with 5 (letters) ^ 5 (length) = 3125 potential words
 NCBI: https://www.ncbi.nlm.nih.gov/
 NCBI Human Genome Resources: https://www.ncbi.nlm.nih.gov/genome/guide/human/
 
+
+### Closing gaps in the human genome using sequencing by synthesis
+#### Authors: Manuel Garber, Michael C Zody, Harindra M Arachchi, Aaron Berlin, Sante Gnerre, Lisa M Green, Niall Lennon, and Chad Nusbaum
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2718494/
+
+
+### Filling the gaps
+#### Author: Laura M. Zahn
+
+https://www.science.org/doi/10.1126/science.abp8653
+
+
+### Mechanisms of DNA damage, repair and mutagenesis
+#### Authors: Nimrat Chatterjee Graham C. Walker
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5474181/
+
+
+### Human DNA Repair Genes
+#### Author: John Sgouros
+
+https://d1wqtxts1xzle7.cloudfront.net/35295893/1284-with-cover-page-v2.pdf?Expires=1658702441&Signature=dQjl~kjMrgJrwmF1vcr2uFPZdkmy9Qj31hdKXivadJpVkKyrlU41tcFnH81XMYFLuKitGkRBg2O1Mw-6FcJUJzMFx9BI7a75zzrEo~cElbfRZ0Aori4aK2ygintricxETBM4m2eNTQkbPsAMHv7UjpIbX74KpJdDU4P6RGb05RAXwJajsAy9N7Z6BY3nOv2CXKtFo61zHNNtwzZtAiKyfA8m05eY3yrSKpHlt2xl~4x4ouhmjvf3xn47QG80qj1AKlYu5Se0c-G~01816yOpAlFTEE4qGdfA4NVbBzxcM4Z4BXnPtBaE57lMLDUqtT7Avu12CTWlbxGo6OCkPbSgMQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA

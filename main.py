@@ -1,6 +1,5 @@
 from Bio import SeqIO  # biopython
 from Bio.SeqUtils import GC
-import squiggle
 
 
 # terminal: Squiggle data/GRCh38_latest_protein.faa --method=gates
@@ -35,7 +34,7 @@ def return_genomic_sequence():
         return str(sequence.seq)
 
 
-# Note: these have to stay commented when running encoding files
+# Note: these calls have to stay commented when running encoding files
 # output_sequence_info()
 # dna_complement()
 

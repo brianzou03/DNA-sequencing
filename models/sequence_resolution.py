@@ -6,5 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-# Resolve gaps in DNA sequence using sklearn
+test_sequence = 'ATCNAACGTACGTANATCG'  # resolving the unknown bases N
+
+
 
