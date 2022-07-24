@@ -32,14 +32,3 @@ def dna_complement():
 
 output_sequence_info()
 dna_complement()
-
-
-# Approaching Sequencing Data:
-# 1. Ordinal encoding DNA Sequence
-
-# TODO: encode characters into matrices
-
-
-# 2. One-hot encoding DNA Sequence
-# 3. DNA sequence as a “language”, known as k-mer counting
-

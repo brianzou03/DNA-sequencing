@@ -13,10 +13,14 @@ Test files are provided to demonstrate the functionality of the project
 
 ## Datasets used
 * GRCh38_latest_genomic.fna - Human Genome Sequence (check prerequisites)
-* GRCh38_genomic_test.fna - A subset of the Human Genome Sequence without the ambiguous bases (N) for testing purposes
+* GRCh38_genomic_test.fna - A subset (the initial sequence in GRCh38_latest_genomic.fna before artifacts)
+ of the Human Genome Sequence without the ambiguous bases (N) for testing purposes
+
 
 * GRCh38_latest_protein.faa - Human Protein Sequence
-* GRCh38_protein_test.faa - A subset of the Human Protein Sequence for testing purposes
+* GRCh38_protein_test.faa - A subset (first 200 protein entries from GRCh38_latest_protein.faa) 
+ of the Human Protein Sequence for testing purposes
+
 
 * orchid.fasta - Cypripedioideae, a subfamily of orchids for testing purposes
 
