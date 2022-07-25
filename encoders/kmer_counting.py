@@ -1,7 +1,5 @@
 from sklearn.feature_extraction.text import CountVectorizer
-from main import return_genomic_sequence
-
-from encoders import *
+from helpers.encoding_helper import return_genomic_sequence
 
 
 def kmers_function(seq, size):

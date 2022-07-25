@@ -7,7 +7,7 @@ from Bio.SeqUtils import GC
 # Produces general info about the sequence to terminal
 def output_sequence_info():
     row = 0
-    for sequence in SeqIO.parse('data/GRCh38_protein_test.faa', 'fasta'):
+    for sequence in SeqIO.parse('fasta_data/GRCh38_protein_test.faa', 'fasta'):
         print('Sequence ID: ' + str(sequence.id))
         print('DNA Sequence: ' + str(sequence.seq))
         print('Guanine-Cytosine Content: ' + str(GC(sequence.seq)))
@@ -20,7 +20,7 @@ def output_sequence_info():
 # Displays complement and reverse complement of the sequence to terminal
 def dna_complement():
     row = 1
-    for sequence in SeqIO.parse('data/GRCh38_genomic_test.fna', 'fasta'):
+    for sequence in SeqIO.parse('fasta_data/GRCh38_genomic_test.fna', 'fasta'):
         print('Row ' + str(row))
         print('Original Sequence:  {} '.format(sequence.seq))
         print('Complement Sequence: {}: '.format(sequence.seq.complement()))
@@ -28,13 +28,6 @@ def dna_complement():
         row += 1
 
 
-# Returning genomic sequence for use in sequencing.py
-def return_genomic_sequence():
-    for sequence in SeqIO.parse('../data/GRCh38_genomic_test.fna', 'fasta'):
-        return str(sequence.seq)
-
-
-# Note: these calls have to stay commented when running encoding files
-# output_sequence_info()
-# dna_complement()
+output_sequence_info()
+dna_complement()
 

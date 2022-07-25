@@ -25,6 +25,20 @@ Test files are provided to demonstrate the functionality of the project
 
 * orchid.fasta - Cypripedioideae, a subfamily of orchids for testing purposes
 
+Txt datasets omitted, I will figure out how to link them later
+* chimp_data.txt
+* dog_data.txt
+* human_data.txt
+
+
+## FASTA File Extensions 
+
+* fasta, fa	generic FASTA	Any generic fasta file. See below for other common FASTA file extensions
+* fna - FASTA nucleic acid	(Used generically to specify nucleic acids.)
+* ffn - FASTA nucleotide of gene regions (Contains coding regions for a genome.)
+* faa - FASTA amino acid (Contains amino acid sequences. A multiple protein fasta file can have the more specific extension mpfa.)
+* frn - FASTA non-coding RNA (Contains non-coding RNA regions for a genome, in DNA alphabet e.g. tRNA, rRNA)
+
 
 ## DNA Bases + 1 letter code
 * Adenine (A) : pairs with Thymine (T)
@@ -54,15 +68,6 @@ Test files are provided to demonstrate the functionality of the project
 * tryptophan - trp - (W)
 * tyrosine - tyr - (Y)
 * valine - val - (V)
-
-
-## FASTA File Extensions 
-
-* fasta, fa	generic FASTA	Any generic fasta file. See below for other common FASTA file extensions
-* fna - FASTA nucleic acid	(Used generically to specify nucleic acids.)
-* ffn - FASTA nucleotide of gene regions (Contains coding regions for a genome.)
-* faa - FASTA amino acid (Contains amino acid sequences. A multiple protein fasta file can have the more specific extension mpfa.)
-* frn - FASTA non-coding RNA (Contains non-coding RNA regions for a genome, in DNA alphabet e.g. tRNA, rRNA)
 
 
 ## DNA Encoding Approaches

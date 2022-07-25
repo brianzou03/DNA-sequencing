@@ -1,8 +1,6 @@
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
-
-from helpers.encoding_helper import string_to_array
-from main import return_genomic_sequence
+from helpers.encoding_helper import string_to_array, return_genomic_sequence
 from encoders.ordinal import label_encoder
 
 

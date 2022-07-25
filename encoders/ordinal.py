@@ -1,5 +1,4 @@
-from helpers.encoding_helper import string_to_array
-from main import return_genomic_sequence
+from helpers.encoding_helper import string_to_array, return_genomic_sequence
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
