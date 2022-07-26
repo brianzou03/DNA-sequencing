@@ -25,10 +25,10 @@ Test files are provided to demonstrate the functionality of the project
 
 * orchid.fasta - Cypripedioideae, a subfamily of orchids for testing purposes
 
-Txt datasets omitted, I will figure out how to link them later
+Text datasets with DNA for 3 species, used in the species classifier
+* human_data.txt
 * chimp_data.txt
 * dog_data.txt
-* human_data.txt
 
 
 ## FASTA File Extensions 
