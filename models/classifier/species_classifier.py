@@ -9,9 +9,9 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 # TODO: convert human, chimp, and dog_data.txt to FASTA format (beware pandas cant read fasta)
 # https://stackoverflow.com/questions/19436789/biopython-seqio-to-pandas-dataframe
 
-human_dna = pd.read_table('../text_data/human_data.txt')
-chimp_dna = pd.read_table('../text_data/chimp_data.txt')
-dog_dna = pd.read_table('../text_data/dog_data.txt')
+human_dna = pd.read_table('../../text_data/human_data.txt')
+chimp_dna = pd.read_table('../../text_data/chimp_data.txt')
+dog_dna = pd.read_table('../../text_data/dog_data.txt')
 count_vectorizer = CountVectorizer(ngram_range=(4, 4))
 
 
