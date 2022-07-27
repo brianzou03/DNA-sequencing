@@ -1,5 +1,11 @@
 # DNA-sequencing
-(project synopsis here)
+DNA Classifier:
+The classifier portion of the project takes in data from humans, chimps, and dogs. The classifier
+is trained on human DNA using k-mer counting and the Multinomial Naive Bayes classification algorithm.
+The accuracy, precision, recall, and f1 statistics are outputted. 
+
+DNA Sequence Gap Resolution:
+(DNA gap prediction Synposis here)
 
 ## Prerequisites
 Some files within the data dir are too large, and therefore must be downloaded directly
@@ -25,7 +31,7 @@ Test files are provided to demonstrate the functionality of the project
 
 * orchid.fasta - Cypripedioideae, a subfamily of orchids for testing purposes
 
-Text datasets with DNA for 3 species, used in the species classifier
+Text datasets with DNA for 3 species, used in the species DNA classifier
 * human_data.txt
 * chimp_data.txt
 * dog_data.txt

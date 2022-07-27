@@ -1,2 +1,2 @@
-fasta_data/GRCh38_latest_genomic.fna
-text_data/
+data/fasta_data/GRCh38_latest_genomic.fna
+data/text_data/

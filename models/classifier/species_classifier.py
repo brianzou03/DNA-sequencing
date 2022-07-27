@@ -9,9 +9,10 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 # TODO: convert human, chimp, and dog_data.txt to FASTA format (beware pandas cant read fasta)
 # https://stackoverflow.com/questions/19436789/biopython-seqio-to-pandas-dataframe
 
-human_dna = pd.read_table('../../text_data/human_data.txt')
-chimp_dna = pd.read_table('../../text_data/chimp_data.txt')
-dog_dna = pd.read_table('../../text_data/dog_data.txt')
+human_dna = pd.read_table('../../data/text_data/human_data.txt')
+chimp_dna = pd.read_table('../../data/text_data/chimp_data.txt')
+dog_dna = pd.read_table('../../data/text_data/dog_data.txt')
+# Transforms a given text into a vector on the basis of the frequency of each word that occurs in the text
 count_vectorizer = CountVectorizer(ngram_range=(4, 4))
 
 
@@ -75,7 +76,7 @@ x_train, x_test, y_train, y_test = train_test_split(human_conversion(human_dna, 
                                                     human_conversion(human_dna, count_vectorizer)[1],
                                                     test_size=0.20, random_state=42)
 
-# Multinomial naive bayes classifier (MultinomialNB)
+# Multinomial Naive Bayes classifier (MultinomialNB)
 classifier = MultinomialNB(alpha=0.1)
 classifier.fit(x_train, y_train)  # Training the model with human DNA using data and iloc
 

@@ -5,7 +5,7 @@ from Bio import SeqIO
 
 # Returning genomic sequence for use in encoders
 def return_genomic_sequence():
-    for sequence in SeqIO.parse('../fasta_data/GRCh38_genomic_test.fna', 'fasta'):
+    for sequence in SeqIO.parse('../data/fasta_data/GRCh38_genomic_test.fna', 'fasta'):
         return str(sequence.seq)
 
 
