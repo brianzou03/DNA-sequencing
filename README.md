@@ -5,7 +5,8 @@ is trained on human DNA using k-mer counting and the Multinomial Naive Bayes cla
 The accuracy, precision, recall, and f1 statistics are outputted. 
 
 DNA Sequence Gap Resolution:
-(DNA gap prediction Synposis here... using NLP to resolve similarity gap to predict whether it belongs to a sequence or not?)
+(DNA gap prediction Synposis here)
+(Current limitation is resolving 1 missing base gaps, can be expanded but would require new models)
 
 ## Prerequisites
 Some files within the data dir are too large, and therefore must be downloaded directly
