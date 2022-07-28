@@ -2,19 +2,14 @@ from Bio import SeqIO
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
 from sklearn import datasets
 import numpy as np
 import difflib
 
 # TODO: publish to BioRxiv when completed
-
-# You are given a strand with gaps, represented by unknown base N
-# Model Idea: Train model on human DNA k-mer words...
-# letters ^ length = possible words. 4 (ATCG) ^ 6 (len) = 4096 potential words
-# Model then tries to predict what k-mer word the test_sequence is closest to matching
-# When it figures out which 6 letter word the sequence matches, we then know our unknown base N
-
 # TODO: replace with fasta data, need to figure out how to do with pandas
+
 human_dna = pd.read_table('../data/text_data/human_data.txt')
 
 count_vectorizer = CountVectorizer(ngram_range=(4, 4))
@@ -34,7 +29,6 @@ def human_conversion(dataset, cv):
     human_texts = list(dataset['words'])  # list of 'words' in the human DNA
     for item in range(len(human_texts)):
         human_texts[item] = ' '.join(human_texts[item])
-        print(human_texts[item])
 
     # separate x and y labels
     y_human = dataset.iloc[:, 0].values  # select specific row/col in dataset
@@ -42,30 +36,57 @@ def human_conversion(dataset, cv):
     return [x_human, y_human, human_texts]  # returns a list, so access index for specific x or y
 
 
-human_conversion(human_dna, count_vectorizer)  # this prints the 6 letter k-mer words
-
-# Splitting the human dataset into the training set and test set
 x_train, x_test, y_train, y_test = train_test_split(human_conversion(human_dna, count_vectorizer)[0],
                                                     human_conversion(human_dna, count_vectorizer)[1],
                                                     test_size=0.20, random_state=42)
 
-# Look at classifier prediction and see if you can try inserting 6 letter k-mer and predict
-# From there try predicting with a 6 letter k-mer with N gaps
-# The list to parse through and match is human_texts... (use word similarity to match to a word in human_texts)
+
+# Helper function to replace the N with A, T, C, or G
+def replace_n(strand, base):
+    new_strand = ''
+    for letter in strand.lower():
+        if letter == 'n':
+            new_strand += base  # replace where N was with the guessed base
+        else:
+            new_strand += letter
+
+    return new_strand
 
 
-a = 'ATCGAA'
-b = 'ATCGNA'
+# Basically trying to guess if the N is an A, T, C, or G
+# Train the model on human_texts that contains the 6-letter k-mer sequences
 
-seq = difflib.SequenceMatcher(None, a, b)
-d = seq.ratio() * 100
-print(d)
-# OUTPUT: 83.33 repeating
+strand_a = 'atcgaa'
+strand_b = 'atcgna'
 
-a = 'ATCGAA'
-b = 'ATCGNN'
+seq = difflib.SequenceMatcher(None, strand_a, strand_b)
+seq_ratio = seq.ratio() * 100
+print(seq_ratio)
+# Output: 83.33 repeating
 
-seq = difflib.SequenceMatcher(None, a, b)
-d = seq.ratio() * 100
-print(d)
-# OUTPUT: 66.66 repeating
+new_strand_b = replace_n(strand_b, 'a')
+print(new_strand_b)
+
+seq = difflib.SequenceMatcher(None, strand_a, new_strand_b)
+seq_ratio = seq.ratio() * 100
+print(seq_ratio)
+# Output: 100
+
+
+for elem in human_conversion(human_dna, count_vectorizer)[2]:  # outputs all the k-mer results
+    print(elem)
+
+diff_list = []
+
+for elem in human_conversion(human_dna, count_vectorizer)[2]:  # all k-mer results diff with test strand_b
+    seq = difflib.SequenceMatcher(None, elem, strand_b)
+    seq_ratio = seq.ratio() * 100
+    diff_list.append(seq_ratio)
+    print(seq_ratio)
+
+diff_dictionary = {}  # hashmap that contains the values with highest similarity percentage and their index in diff_list
+
+# Multinomial Naive Bayes classifier (MultinomialNB)
+classifier = MultinomialNB(alpha=0.1)
+classifier.fit(x_train, y_train)  # Training the model with human DNA
+
