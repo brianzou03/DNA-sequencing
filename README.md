@@ -5,7 +5,7 @@ is trained on human DNA using k-mer counting and the Multinomial Naive Bayes cla
 The accuracy, precision, recall, and f1 statistics are outputted. 
 
 DNA Sequence Gap Resolution:
-(DNA gap prediction Synposis here)
+(DNA gap prediction Synposis here... using NLP to resolve similarity gap to predict whether it belongs to a sequence or not?)
 
 ## Prerequisites
 Some files within the data dir are too large, and therefore must be downloaded directly
@@ -112,11 +112,26 @@ NCBI Human Genome Resources: https://www.ncbi.nlm.nih.gov/genome/guide/human/
 
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2718494/
 
+Garber M, Zody MC, Arachchi HM, Berlin A, Gnerre S, Green LM, Lennon N, Nusbaum C. Closing gaps in the human genome using sequencing by synthesis. Genome Biol. 2009;10(6):R60. doi: 10.1186/gb-2009-10-6-r60. Epub 2009 Jun 2. Erratum in: Genome Biol. 2011;12(4):403. PMID: 19490611; PMCID: PMC2718494.
+
 
 ### Filling the gaps
 #### Author: Laura M. Zahn
 
 https://www.science.org/doi/10.1126/science.abp8653
+
+@article{
+doi:10.1126/science.abp8653,
+author = {Laura M. Zahn },
+title = {Filling the gaps},
+journal = {Science},
+volume = {376},
+number = {6588},
+pages = {42-43},
+year = {2022},
+doi = {10.1126/science.abp8653},
+URL = {https://www.science.org/doi/abs/10.1126/science.abp8653},
+eprint = {https://www.science.org/doi/pdf/10.1126/science.abp8653}}
 
 
 ### Mechanisms of DNA damage, repair and mutagenesis
@@ -124,8 +139,11 @@ https://www.science.org/doi/10.1126/science.abp8653
 
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5474181/
 
+Chatterjee N, Walker GC. Mechanisms of DNA damage, repair, and mutagenesis. Environ Mol Mutagen. 2017 Jun;58(5):235-263. doi: 10.1002/em.22087. Epub 2017 May 9. PMID: 28485537; PMCID: PMC5474181.
 
-### Human DNA Repair Genes
-#### Author: John Sgouros
 
-https://d1wqtxts1xzle7.cloudfront.net/35295893/1284-with-cover-page-v2.pdf?Expires=1658702441&Signature=dQjl~kjMrgJrwmF1vcr2uFPZdkmy9Qj31hdKXivadJpVkKyrlU41tcFnH81XMYFLuKitGkRBg2O1Mw-6FcJUJzMFx9BI7a75zzrEo~cElbfRZ0Aori4aK2ygintricxETBM4m2eNTQkbPsAMHv7UjpIbX74KpJdDU4P6RGb05RAXwJajsAy9N7Z6BY3nOv2CXKtFo61zHNNtwzZtAiKyfA8m05eY3yrSKpHlt2xl~4x4ouhmjvf3xn47QG80qj1AKlYu5Se0c-G~01816yOpAlFTEE4qGdfA4NVbBzxcM4Z4BXnPtBaE57lMLDUqtT7Avu12CTWlbxGo6OCkPbSgMQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
+### DNA Classification
+#### Author: Nagesh Singh Chauhan
+
+https://www.kaggle.com/code/nageshsingh/demystify-dna-sequencing-with-machine-learning/notebook
+

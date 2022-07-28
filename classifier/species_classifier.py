@@ -3,15 +3,17 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+# from sklearn.externals import joblib
+import joblib
 
 # Creating a classifier model to differentiate DNA type by species
 
 # TODO: convert human, chimp, and dog_data.txt to FASTA format (beware pandas cant read fasta)
 # https://stackoverflow.com/questions/19436789/biopython-seqio-to-pandas-dataframe
 
-human_dna = pd.read_table('../../data/text_data/human_data.txt')
-chimp_dna = pd.read_table('../../data/text_data/chimp_data.txt')
-dog_dna = pd.read_table('../../data/text_data/dog_data.txt')
+human_dna = pd.read_table('../data/text_data/human_data.txt')
+chimp_dna = pd.read_table('../data/text_data/chimp_data.txt')
+dog_dna = pd.read_table('../data/text_data/dog_data.txt')
 # Transforms a given text into a vector on the basis of the frequency of each word that occurs in the text
 count_vectorizer = CountVectorizer(ngram_range=(4, 4))
 
@@ -25,14 +27,14 @@ def kmers_function(seq, size=6):  # all k-mers converted to lowercase and size 6
 def human_conversion(dataset, cv):
     # lambda applies kmers function to all rows within the specified dataset
     dataset['words'] = dataset.apply(lambda x: kmers_function(x['sequence']), axis=1)
-    dataset = dataset.drop('sequence', axis=1)  # remove the word sequence
+    dataset = dataset.drop('sequence', axis=1)  # remove the 'sequence' label
 
     human_texts = list(dataset['words'])  # list of 'words' in the human DNA
     for item in range(len(human_texts)):
         human_texts[item] = ' '.join(human_texts[item])  # joining the words with space in between
 
     # separate x and y labels
-    y_human = dataset.iloc[:, 0].values  # integer location indexing
+    y_human = dataset.iloc[:, 0].values  # select specific row/col in dataset
 
     x_human = cv.fit_transform(human_texts)  # performs fit and transform on the input data
 
@@ -79,6 +81,15 @@ x_train, x_test, y_train, y_test = train_test_split(human_conversion(human_dna, 
 # Multinomial Naive Bayes classifier (MultinomialNB)
 classifier = MultinomialNB(alpha=0.1)
 classifier.fit(x_train, y_train)  # Training the model with human DNA using data and iloc
+
+
+# Save the model to the model folder
+def save_model(clf):  # takes in a classifier
+    # Save trained model to model.sav
+    filename = "models/species_model.sav"
+    joblib.dump(clf, filename)  # pipeline, dir name
+
+    classifier = joblib.load(filename)  # open the model and set classifier to the existing model
 
 
 # Produces score based on results vs predictions
