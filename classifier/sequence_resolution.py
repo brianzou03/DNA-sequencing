@@ -10,6 +10,7 @@ import difflib
 # TODO: publish to BioRxiv when completed
 # TODO: replace with fasta data, need to figure out how to do with pandas
 # TODO: Consider using seaborn, numpy for graph display in README
+# TODO: Consider making sequence resolution into a library/package
 
 human_dna = pd.read_table('../data/text_data/human_data.txt')
 
@@ -69,7 +70,6 @@ strand_b = 'gcatgn'  # an example strand from the human dna txt
 def generate_matches(target_list, match_strand):  # stores all matches with 5 or more letters in common
 
     six_letter_list = []
-    diff_list = []
 
     for elem in target_list:  # add all the 6-letter words to new list in lowercase
         six_letter_list.append(elem.lower())
@@ -78,12 +78,13 @@ def generate_matches(target_list, match_strand):  # stores all matches with 5 or
     current_max_seq = ''
     current_max_index = 0
     seq_match_dict = {}  # dictionary storing key (index of elem) : value (DNA strand sequence)
+    base_count = []
+    a_count, c_count, g_count, t_count = 0, 0, 0, 0
 
     # This function takes a while to load, so don't close out if it doesn't immediately output
     for index, elem in enumerate(six_letter_list):  # all k-mer results diff with test strand_b
         seq = difflib.SequenceMatcher(None, elem, match_strand)
         seq_ratio = seq.ratio() * 100
-        diff_list.append(seq_ratio)
 
         if seq_ratio > current_max:  # setting new current max
             current_max = seq_ratio
@@ -92,22 +93,41 @@ def generate_matches(target_list, match_strand):  # stores all matches with 5 or
         elif seq_ratio > 83:  # adds all 6-letter sequences that have 5 or more matching letters
             # TODO: Match by 5 letters that match at the same indexes
             index_match = 0
+            missing_base = ''
             for iterator, char in enumerate(elem):  # this additional for loop increases time complexity by a lot
                 if elem[iterator] == match_strand[iterator]:
                     index_match += 1
+                else:
+                    missing_base = elem[iterator]
             if index_match >= 5:  # match 5 or more letters in the right index to be added
                 seq_match_dict[index] = elem
-            # TODO: create list to store total A, T, C, G appearance in the matches
-            # Use that ratio to feed info to the ML model
+                # count missing bases, add to base_count
+                if missing_base == 'a':
+                    a_count += 1
+                elif missing_base == 'c':
+                    c_count += 1
+                elif missing_base == 'g':
+                    g_count += 1
+                elif missing_base == 't':
+                    t_count += 1
 
-    seq_match_dict[current_max_index] = current_max_seq  # add the max
+    # append a, c, t, g count to base count list
+    base_count.append(a_count)
+    base_count.append(c_count)
+    base_count.append(g_count)
+    base_count.append(t_count)
 
-    print(seq_match_dict)
+    seq_match_dict[current_max_index] = current_max_seq  # add the max to dict
 
-    return seq_match_dict
+    print(seq_match_dict)  # print sequence hashmap
+    print('\n' + '|  A  |  C  |  T  |  G  |')
+    print(''.join(str(base_count)))  # print basecount
+    return [seq_match_dict, base_count]
 
 
 generate_matches(human_conversion(human_dna, count_vectorizer)[3], strand_b)
+
+# Use the ACTG ratio to feed info to the ML model
 
 # Multinomial Naive Bayes classifier (MultinomialNB)
 classifier = MultinomialNB(alpha=0.1)

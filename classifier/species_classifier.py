@@ -9,6 +9,8 @@ import joblib
 # Creating a classifier model to differentiate DNA type by species
 
 # TODO: convert human, chimp, and dog_data.txt to FASTA format (beware pandas cant read fasta)
+# TODO: apply gap resolution to other species post-classification
+# TODO Classify species -> resolve gaps in dna based on what species has been predicted
 # https://stackoverflow.com/questions/19436789/biopython-seqio-to-pandas-dataframe
 
 human_dna = pd.read_table('../data/text_data/human_data.txt')

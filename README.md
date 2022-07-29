@@ -5,6 +5,14 @@ is trained on human DNA using k-mer counting and the Multinomial Naive Bayes cla
 The accuracy, precision, recall, and f1 statistics are outputted. 
 
 DNA Sequence Gap Resolution:
+Given k-mer strands of 6-letter length, we match our sequence of 5 letters + one unknown base with in-order
+matching. This means that gcatgn will match with gcatga, gcatgc, gcatgg, gcatgt. We then count the occurrences
+of each of the 4 bases to find which base occurs the most often, and is therefore the most likely to be the
+missing base within the gap. We feed that information to the model, which then creates a prediction given a
+6-letter strand with a missing base.
+
+Why this works - by finding the 
+
 (DNA gap prediction Synposis here)
 (Current limitation is resolving 1 missing base gaps, can be expanded but would require new models)
 
