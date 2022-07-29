@@ -9,6 +9,7 @@ import difflib
 
 # TODO: publish to BioRxiv when completed
 # TODO: replace with fasta data, need to figure out how to do with pandas
+# TODO: Consider using seaborn, numpy for graph display in README
 
 human_dna = pd.read_table('../data/text_data/human_data.txt')
 
@@ -61,7 +62,7 @@ def replace_n(strand, base):
 
 
 strand_b = 'gcatgn'  # an example strand from the human dna txt
-new_strand_b = replace_n(strand_b, 'c')  # replace with the base guess
+# new_strand_b = replace_n(strand_b, 'c')
 
 
 # TODO: need to filter matches to in-order sequence matches because it still matches regardless of letter order
@@ -88,8 +89,16 @@ def generate_matches(target_list, match_strand):  # stores all matches with 5 or
             current_max = seq_ratio
             current_max_seq = elem
             current_max_index = index
-        elif seq_ratio > 83:  # adds all 6-letter sequences that have 5 or more matching letters\
-            seq_match_dict[index] = elem
+        elif seq_ratio > 83:  # adds all 6-letter sequences that have 5 or more matching letters
+            # TODO: Match by 5 letters that match at the same indexes
+            index_match = 0
+            for iterator, char in enumerate(elem):  # this additional for loop increases time complexity by a lot
+                if elem[iterator] == match_strand[iterator]:
+                    index_match += 1
+            if index_match >= 5:  # match 5 or more letters in the right index to be added
+                seq_match_dict[index] = elem
+            # TODO: create list to store total A, T, C, G appearance in the matches
+            # Use that ratio to feed info to the ML model
 
     seq_match_dict[current_max_index] = current_max_seq  # add the max
 
@@ -98,7 +107,7 @@ def generate_matches(target_list, match_strand):  # stores all matches with 5 or
     return seq_match_dict
 
 
-generate_matches(human_conversion(human_dna, count_vectorizer)[3], new_strand_b)
+generate_matches(human_conversion(human_dna, count_vectorizer)[3], strand_b)
 
 # Multinomial Naive Bayes classifier (MultinomialNB)
 classifier = MultinomialNB(alpha=0.1)

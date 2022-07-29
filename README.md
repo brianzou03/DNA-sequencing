@@ -53,55 +53,13 @@ Text datasets with DNA for 3 species, used in the species DNA classifier
 * Guanine (G)
 * Thymine (T)
 
-## Protein amino acids + 3 letter code + 1 letter code
-
-* alanine - ala - (A)
-* arginine - arg - (R)
-* asparagine - asn - (N)
-* aspartic acid - asp - (D)
-* cysteine - cys - (C)
-* glutamine - gln - (Q)
-* glutamic acid - glu - (E)
-* glycine - gly - (G)
-* histidine - his - (H) 
-* isoleucine - ile - (I)
-* leucine - leu - (L)
-* lysine - lys - (K)
-* methionine - met - (M)
-* phenylalanine - phe - (F)
-* proline - pro - (P)
-* serine - ser - (S)
-* threonine - thr - (T)
-* tryptophan - trp - (W)
-* tyrosine - tyr - (Y)
-* valine - val - (V)
-
-
-## DNA Encoding Approaches
-1. **Ordinal encoding DNA sequence data**
-We need to encode each nitrogen base as an ordinal value. 
-“ATGC” becomes [0.25, 0.5, 0.75, 1.0]. Ambiguous bases become 0.
-
-
-2. **One-hot encoding DNA Sequence**
-One-hot encoding is often used in deep learning methods and works with CNN. 
-“ATGC” becomes [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0]. 
-One-hot encoded vectors can be concatenated or transformed into matrices
-
-
-3. **k-mer counting (DNA sequences as a "language")**
-The problem with ordinal and one-hot is that the results are not uniform length, necessary for classification
-and regression. With k-mer counting we take a sequence and break it down into k-mer length "words". 
-We determine the length of the words - for example "words" of length 5 (hexamers), 
-“ATGCATGCA” becomes: 'ATGCA', 'TGCAT', ‘GCATG’, 'CATGC', 'ATGCA' . 
-This forms 5 hexamer words, with 5 (letters) ^ 5 (length) = 3125 potential words 
-
 
 ## Machine Learning Model
 (ML Model here)
 
 
 ## Sources/Research
+
 
 ### National Center for Biotechnology Information (NCBI)
 NCBI: https://www.ncbi.nlm.nih.gov/
