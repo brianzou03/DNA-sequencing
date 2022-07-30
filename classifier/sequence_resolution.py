@@ -1,7 +1,7 @@
-from Bio import SeqIO
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.naive_bayes import MultinomialNB
 from sklearn import datasets
 import numpy as np
@@ -14,16 +14,14 @@ import difflib
 
 human_dna = pd.read_table('../data/text_data/human_data.txt')
 
-count_vectorizer = CountVectorizer(ngram_range=(4, 4))
-
 
 # Helper k-mer conversion function
 def kmers_function(seq, size=6):  # all k-mers converted to lowercase and size 6
     return [seq[x:x + size].lower() for x in range(len(seq) - size + 1)]
 
 
-# Converting human DNA into k-mer form to fit the model
-def human_conversion(dataset, cv):
+# Converting human DNA into k-mer form to fit the model ... preprocessing
+def human_conversion(dataset):
     # lambda applies kmers function to all rows within the specified dataset
     dataset['words'] = dataset.apply(lambda x: kmers_function(x['sequence']), axis=1)
     dataset = dataset.drop('sequence', axis=1)  # remove the 'sequence' label
@@ -39,15 +37,8 @@ def human_conversion(dataset, cv):
         for elem in temp_arr:
             word_list.append(elem)
 
-    # separate x and y labels
-    y_human = dataset.iloc[:, 0].values  # select specific row/col in dataset
-    x_human = cv.fit_transform(human_texts)  # performs fit and transform on the input data
-    return [x_human, y_human, human_texts, word_list]  # returns a list, so access index for specific x or y
-
-
-x_train, x_test, y_train, y_test = train_test_split(human_conversion(human_dna, count_vectorizer)[0],
-                                                    human_conversion(human_dna, count_vectorizer)[1],
-                                                    test_size=0.20, random_state=42)
+    # Index 0: unsplit lists of DNA, 1: list of DNA split into 6-letter k-mer sequences
+    return [human_texts, word_list]
 
 
 # Helper function to replace the N with A, T, C, or G
@@ -63,6 +54,8 @@ def replace_n(strand, base):
 
 
 strand_b = 'gcatgn'  # an example strand from the human dna txt
+
+
 # new_strand_b = replace_n(strand_b, 'c')
 
 
@@ -112,23 +105,61 @@ def generate_matches(target_list, match_strand):  # stores all matches with 5 or
                     t_count += 1
 
     # append a, c, t, g count to base count list
+    max_base = 0
+    max_base_char = ''
     base_count.append(a_count)
+    if a_count > max_base:
+        max_base_char = 'a'  # setting the max base character
     base_count.append(c_count)
+    if c_count > max_base:
+        max_base_char = 'c'
     base_count.append(g_count)
+    if a_count > max_base:
+        max_base_char = 'g'
     base_count.append(t_count)
+    if a_count > max_base:
+        max_base_char = 't'
 
     seq_match_dict[current_max_index] = current_max_seq  # add the max to dict
 
-    print(seq_match_dict)  # print sequence hashmap
+    # print(seq_match_dict)  # print sequence hashmap
     print('\n' + '|  A  |  C  |  T  |  G  |')
     print(''.join(str(base_count)))  # print basecount
-    return [seq_match_dict, base_count]
+    print('\n' + 'The base with the highest count is: ' + max_base_char)
+
+    # Index 0: dict matching sequences to index, 1: list with acgt total count, 2: base which occurs the most
+    return [seq_match_dict, base_count, max_base_char]
 
 
-generate_matches(human_conversion(human_dna, count_vectorizer)[3], strand_b)
+generate_matches(human_conversion(human_dna)[1], strand_b)
 
 # Use the ACTG ratio to feed info to the ML model
 
-# Multinomial Naive Bayes classifier (MultinomialNB)
-classifier = MultinomialNB(alpha=0.1)
-classifier.fit(x_train, y_train)  # Training the model with human DNA
+# Note: downside is complexity. Each strand takes upwards of one minute. Limit test size to 10 strands initially?
+# After teaching the model a few hundred strands, save to models/ folder
+# Preprocessing takes in ACTN
+# Preprocessing of each strand should generate the base which is most likely to be the missing base
+
+
+# Two approaches:
+# One) You train the model on the existing 6-letter k-mer strands (x)
+#      You then try and predict the gapped strands (y)
+
+# Two: You train the model with the gapped strands and the most likely fit (x)
+#      You then try and predict other gapped strands based on similar occurrences (y)
+
+
+"""
+X is a matrix of the features values, each column being one feature, and being known values.
+Each column of X is an independent variable.
+y is a vector of the target values, being the values you want to try to predict.
+y has only one column and is the dependant/target variable.
+A row in X anf y is one data sample.
+"""
+
+# Try KNN (k-nearest neighbor model) vs Multinomial Naive Bayes
+
+# count_vectorizer = CountVectorizer(ngram_range=(4, 4))
+# Multinomial Naive Bayes classifier
+# classifier = MultinomialNB(alpha=0.1)
+# classifier.fit(x_train, y_train)  # Training the model with human DNA

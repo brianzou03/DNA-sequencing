@@ -11,8 +11,6 @@ of each of the 4 bases to find which base occurs the most often, and is therefor
 missing base within the gap. We feed that information to the model, which then creates a prediction given a
 6-letter strand with a missing base.
 
-Why this works - by finding the 
-
 (DNA gap prediction Synposis here)
 (Current limitation is resolving 1 missing base gaps, can be expanded but would require new models)
 
@@ -25,6 +23,9 @@ https://www.ncbi.nlm.nih.gov/genome/guide/human/
 
 Test files are provided to demonstrate the functionality of the project
 
+Set up the interpreter using Conda. Installation guide below
+
+https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html
 
 
 ## Datasets used
