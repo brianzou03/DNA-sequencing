@@ -3,15 +3,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
-# from sklearn.externals import joblib
 import joblib
 
-# Creating a classifier model to differentiate DNA type by species
-
-# TODO: convert human, chimp, and dog_data.txt to FASTA format (beware pandas cant read fasta)
-# TODO: apply gap resolution to other species post-classification
-# TODO Classify species -> resolve gaps in dna based on what species has been predicted
-# https://stackoverflow.com/questions/19436789/biopython-seqio-to-pandas-dataframe
 
 human_dna = pd.read_table('../data/text_data/human_data.txt')
 chimp_dna = pd.read_table('../data/text_data/chimp_data.txt')
@@ -43,8 +36,11 @@ def human_conversion(dataset, cv):
     return [x_human, y_human]  # returns a list, so access index for specific x or y
 
 
+human_conversion(human_dna, count_vectorizer)
+
+
 # Converting chimp DNA into k-mer form to fit the model
-def chimp_conversion(dataset, cv):  # works the same as human_conversion
+def chimp_conversion(dataset, cv):  # works the same as insert_n
     dataset['words'] = dataset.apply(lambda x: kmers_function(x['sequence']), axis=1)
     dataset = dataset.drop('sequence', axis=1)
 
@@ -60,7 +56,7 @@ def chimp_conversion(dataset, cv):  # works the same as human_conversion
 
 
 # Converting dog DNA into k-mer form to fit the model
-def dog_conversion(dataset, cv):  # works the same as human_conversion
+def dog_conversion(dataset, cv):  # works the same as insert_n
     dataset['words'] = dataset.apply(lambda x: kmers_function(x['sequence']), axis=1)
     dataset = dataset.drop('sequence', axis=1)
 

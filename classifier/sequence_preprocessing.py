@@ -1,11 +1,6 @@
 import pandas as pd
 import difflib
 
-# TODO: publish to BioRxiv when completed
-# TODO: replace with fasta data, need to figure out how to do with pandas
-# TODO: Consider using seaborn, numpy for graph display in README
-# TODO: Consider making sequence resolution into a library/package
-
 human_dna = pd.read_table('../data/text_data/human_data.txt')
 
 
@@ -14,7 +9,7 @@ def kmers_function(seq, size=6):  # all k-mers converted to lowercase and size 6
     return [seq[x:x + size].lower() for x in range(len(seq) - size + 1)]
 
 
-# Converting human DNA into k-mer form to fit the model ... preprocessing
+# Converting human DNA into k-mer form to fit the model
 def human_conversion(dataset):
     # lambda applies kmers function to all rows within the specified dataset
     dataset['words'] = dataset.apply(lambda x: kmers_function(x['sequence']), axis=1)
@@ -113,9 +108,9 @@ def generate_matches(target_list, match_strand):
     seq_match_dict[current_max_index] = current_max_seq  # add the max to dict
 
     # print(seq_match_dict)  # print sequence hashmap
-    print('\n' + '|  A  |  C  |  T  |  G  |')
-    print(''.join(str(base_count)))  # print basecount
-    print('\n' + 'The base with the highest count is: ' + max_base_char)
+    # print('\n' + '|  A  |  C  |  T  |  G  |')
+    # print(''.join(str(base_count)))  # print basecount
+    # print('\n' + 'The base with the highest count is: ' + max_base_char)
 
     # Index 0: dict matching sequences to index, 1: list with acgt total count, 2: base which occurs the most
     return [seq_match_dict, base_count, max_base_char]
