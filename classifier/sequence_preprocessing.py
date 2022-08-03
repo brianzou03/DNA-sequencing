@@ -26,8 +26,10 @@ def human_conversion(dataset):
         for elem in temp_arr:
             word_list.append(elem)
 
+    y_human = dataset.iloc[:, 0].values  # select specific row/col in dataset
+
     # Index 0: unsplit lists of DNA, 1: list of DNA split into 6-letter k-mer sequences
-    return [human_texts, word_list]
+    return [human_texts, word_list, y_human]
 
 
 # Helper function to replace the N with A, T, C, or G

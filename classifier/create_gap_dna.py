@@ -26,7 +26,7 @@ def insert_n(dataset):
                     if i != random_num:
                         new_elem += temp_elem[i]
                     else:
-                        new_elem += 'n'  # replace the randomly selected letter with n
+                        new_elem += 'N'  # replace the randomly selected letter with n
                 word_list.append(new_elem)
         except IndexError:  # when reaching the end of a temp array
             continue
@@ -37,26 +37,15 @@ def insert_n(dataset):
 
 
 def insert_random():
-    import random
-    counter = 0
-    min_no_space = 0
-    max_no_space = 6  # if max sequence length without space
-    no_space = 0
     with open('../data/text_data/human_data.txt', 'r') as f, open('../data/text_data/gap_human_dna.txt', 'w') as w:
         for line in f:
             for c in line:
-                if c.isalpha() and counter > 1:  # ensure that we are only altering the dna
-                    if no_space > min_no_space:
-                        if random.randint(1, 6) == 1 or no_space >= max_no_space:
-
-                            w.write("n")
-                            no_space = 0
-                    else:
-                        no_space += 1
-                        w.write(c)
+                if c.isnumeric() or c == ' ' or c == c.lower():  # catches nums and spaces and lowercase
+                    w.write(c)  # don't touch nums spaces and lowercases
+                elif random.randint(1, 6) == 1:  # 1/6 chance randomly insert 'N'
+                    w.write('N')
                 else:
                     w.write(c)
-            counter += 1
 
 
 insert_random()
