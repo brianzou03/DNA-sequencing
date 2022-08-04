@@ -18,7 +18,7 @@ y_human = human_conversion(human_dna)[2]
 
 gx_human = count_vectorizer.fit_transform(human_conversion(gap_human_dna)[0])
 
-x_train, x_test, y_train, y_test = train_test_split(x_human, y_human, test_size=0.20, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(gx_human, y_human, test_size=0.20, random_state=42)
 
 # Multinomial Naive Bayes classifier
 classifier = MultinomialNB(alpha=0.1)
@@ -38,7 +38,7 @@ def get_metrics(y_test, y_predicted):  # takes the test result and the predicted
 def predict_human():
     print("\nConfusion matrix for predictions on human DNA sequence without gaps\n")
 
-    y_prediction_human = classifier.predict(human_conversion(gap_human_dna)[0])  # or try gx_human
+    y_prediction_human = classifier.predict(x_test)  # or try gx_human
 
     # Output accuracy matrix for human DNA with gaps
     print(pd.crosstab(pd.Series(y_test, name='Actual'), pd.Series(y_prediction_human, name='Predicted')))

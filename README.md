@@ -11,7 +11,6 @@ of each of the 4 bases to find which base occurs the most often, and is therefor
 missing base within the gap. We feed that information to the model, which then creates a prediction given a
 6-letter strand with a missing base.
 
-(DNA gap prediction Synposis here)
 (Current limitation is resolving 1 missing base gaps, can be expanded but would require new models)
 
 ## Prerequisites
@@ -47,25 +46,8 @@ Text datasets with DNA for 3 species, used in the species DNA classifier
 * dog_data.txt
 
 
-## FASTA File Extensions 
-
-* fasta, fa	generic FASTA	Any generic fasta file. See below for other common FASTA file extensions
-* fna - FASTA nucleic acid	(Used generically to specify nucleic acids.)
-* ffn - FASTA nucleotide of gene regions (Contains coding regions for a genome.)
-* faa - FASTA amino acid (Contains amino acid sequences. A multiple protein fasta file can have the more specific extension mpfa.)
-* frn - FASTA non-coding RNA (Contains non-coding RNA regions for a genome, in DNA alphabet e.g. tRNA, rRNA)
-
-
-## DNA Bases + 1 letter code
-* Adenine (A) : pairs with Thymine (T)
-* Cytosine (C) : pairs with Guanine (G)
-* Guanine (G)
-* Thymine (T)
-
-
 ## Machine Learning Model
-(ML Model here)
-
+Currently using Multinomial Naive Bayes, a variation of the Naive Bayes classifier.
 
 ## Sources/Research
 
